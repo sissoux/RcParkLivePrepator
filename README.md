@@ -18,18 +18,21 @@ This script automates the preparation of overlay images for live streaming RC Pa
 
 ## Required Overlays
 
-The tool processes 4 types of overlays:
+The tool processes 7 types of overlays:
 
 1. **ScreenPodiumVide** - Empty podium screen overlay
 2. **ScreenRanking** - Ranking display overlay
 3. **ScreenStartLiveVide** - Empty live start screen overlay
 4. **BandeauSeul** - Banner overlay
+5. **ScreenPodiumVide_interview** - Empty podium screen overlay for interview mode
+6. **ScreenRanking_interview** - Ranking display overlay for interview mode
+7. **ScreenStartLiveVide_interview** - Empty live start screen overlay for interview mode
 
 ## Usage
 
 1. Run the script: `python overlay_preparator.py`
 2. Click "Browse" for each overlay type to select your source images
-3. (Optional) Change the output folder from the default `c:/RcParkLive/CurrentRace`
+3. (Optional) Change the output folder from the default `c:/RCPARK_Live/CurrentRace/OverlayAssets`
 4. Click "Generate" to process all images
 
 ## Output
@@ -39,6 +42,9 @@ Processed images are saved as:
 - `ScreenRanking-1080.png`
 - `ScreenStartLiveVide-1080.png`
 - `BandeauSeul-1080.png`
+- `ScreenPodiumVide-interview-1080.png`
+- `ScreenRanking-interview-1080.png`
+- `ScreenStartLiveVide-interview-1080.png`
 
 All images are saved in PNG format with transparency preserved.
 
@@ -49,7 +55,7 @@ All images are saved in PNG format with transparency preserved.
 
 Install requirements:
 ```bash
-pip install Pillow
+pip install -r requirements.txt
 ```
 
 ## Technical Details
