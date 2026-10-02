@@ -22,11 +22,11 @@ The tool processes 7 types of overlays:
 
 1. **ScreenPodiumVide** - Empty podium screen overlay
 2. **ScreenRanking** - Ranking display overlay
-3. **ScreenStartLiveVide** - Empty live start screen overlay
+3. **ScreenStartLineVide** - Empty live start screen overlay
 4. **BandeauSeul** - Banner overlay
 5. **ScreenPodiumVide_interview** - Empty podium screen overlay for interview mode
 6. **ScreenRanking_interview** - Ranking display overlay for interview mode
-7. **ScreenStartLiveVide_interview** - Empty live start screen overlay for interview mode
+7. **ScreenStartLineVide_interview** - Empty live start screen overlay for interview mode
 
 ## Usage
 
@@ -40,11 +40,11 @@ The tool processes 7 types of overlays:
 Processed images are saved as:
 - `ScreenPodiumVide-1080.png`
 - `ScreenRanking-1080.png`
-- `ScreenStartLiveVide-1080.png`
+- `ScreenStartLineVide-1080.png`
 - `BandeauSeul-1080.png`
 - `ScreenPodiumVide-interview-1080.png`
 - `ScreenRanking-interview-1080.png`
-- `ScreenStartLiveVide-interview-1080.png`
+- `ScreenStartLineVide-interview-1080.png`
 
 All images are saved in PNG format with transparency preserved.
 

@@ -13,11 +13,11 @@ class OverlayPreparator:
         self.file_paths = {
             'ScreenPodiumVide': tk.StringVar(),
             'ScreenRanking': tk.StringVar(),
-            'ScreenStartLiveVide': tk.StringVar(),
+            'ScreenStartLineVide': tk.StringVar(),
             'BandeauSeul': tk.StringVar(),
             'ScreenPodiumVide_interview': tk.StringVar(),
             'ScreenRanking_interview': tk.StringVar(),
-            'ScreenStartLiveVide_interview': tk.StringVar()
+            'ScreenStartLineVide_interview': tk.StringVar()
         }
         
         # Output folder variable
@@ -89,6 +89,15 @@ class OverlayPreparator:
         if folder:
             self.output_folder.set(folder)
     
+    def get_selected_file_paths(self):
+        selected = []
+        for name, var in self.file_paths.items():
+            file_path = (var.get() or "").strip()
+            if not file_path:
+                continue
+            selected.append((name, file_path))
+        return selected
+
     def resize_image(self, image_path, output_name, output_folder):
         """Resize image to fit 1920x1080 while maintaining aspect ratio"""
         try:
@@ -130,36 +139,34 @@ class OverlayPreparator:
     
     def generate_overlays(self):
         try:
-            # Check if all files are selected
-            missing_files = []
-            for name, var in self.file_paths.items():
-                if not var.get():
-                    missing_files.append(name)
-            
-            if missing_files:
-                messagebox.showwarning("Missing Files", 
-                                      f"Please select files for:\n" + "\n".join(missing_files))
+            selected_files = self.get_selected_file_paths()
+            if not selected_files:
+                messagebox.showinfo(
+                    "No files selected",
+                    "No file paths were provided, so nothing was processed."
+                )
                 return
-            
-            # Process each image
+
+            # Process only the provided images
             output_folder = self.output_folder.get()
             processed_files = []
-            for name, var in self.file_paths.items():
-                file_path = var.get()
+            for name, file_path in selected_files:
                 if not os.path.exists(file_path):
                     messagebox.showerror("Error", f"File not found: {file_path}")
                     return
-                
+
                 # Replace underscore with hyphen in interview file names
                 output_name = name.replace('_interview', '-interview')
                 output_path = self.resize_image(file_path, output_name, output_folder)
                 processed_files.append(output_path)
-            
+
             # Success message
-            messagebox.showinfo("Success", 
-                              f"Successfully processed {len(processed_files)} images!\n\n" +
-                              "Output files:\n" + "\n".join([os.path.basename(f) for f in processed_files]))
-            
+            messagebox.showinfo(
+                "Success",
+                f"Successfully processed {len(processed_files)} images!\n\n" +
+                "Output files:\n" + "\n".join([os.path.basename(f) for f in processed_files])
+            )
+
         except Exception as e:
             messagebox.showerror("Error", str(e))
 
